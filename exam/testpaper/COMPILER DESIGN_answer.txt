@@ -1,0 +1,20 @@
+1.d		
+2.a		
+3.c		
+4.b		
+5.a		
+6.c				
+7.a		
+8.d		
+9.c		
+10.a		
+11. Scanner
+12. Look ahead LR parser
+13. Begining pointer & forward pointer
+14. 1
+15. Syntax
+16. Canonical LR parser
+17. No.of look ahead symbols
+18. letter (letter\digit)*
+19. Topdown parser
+20. Non-determinstic finite automata

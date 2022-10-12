@@ -1,0 +1,50 @@
+1. _______ can be called as select statement						
+a) While    
+b)do-while   
+c) for   
+d) if
+2. In Java byte, short, int and long all of these are                                                 
+a) Integer     
+b) Float   
+c) both    
+d)none
+3. Automatic type conversion in java takes place when				    
+a) Two type are compatible and size of destination type is shorter than source type
+b) Two type are compatible and size of destination type is larger than source type.
+c) both            
+d)none
+4. The size of float and double in java is 					         		
+   a) 32 and 64 bit  
+b) 64 and 32 bit   
+c) 32 and 32 bit     
+d) 64 and 32
+5._____________ method cannot be overridden                                                     
+    a) super  
+b) final    
+c) private    
+d) normal
+6.  what is the value of a= 55>43?55:43		        		      	     		
+a)55     
+ b)-1     
+c)43    
+d)0
+7. What will be the return type of method that not returns any value 
+a) int  
+ b) double   
+ c) void    
+d) float
+8.  The variable declared in a class for the use of all methods of class are called
+     a) Private variable   
+ b) objects   
+ c) instance variables   
+d) none
+9. Which one of the following is a valid statement? 
+   a) char[] c= new char()     
+b) char[] c= new char[5]    
+c) both   
+d) none
+10. Which of the following is a correct interface?
+    a) interface A{void print{}}       
+b)abstract interface A{ print();}
+    c) abstract interface A{abstract void print();}     
+d) interface A{ void print();}

@@ -1,0 +1,50 @@
+1. The memory that is placed between CPU and main memory is                                                                                                                                  
+a)Cache	
+ b)Random –access	
+c)Read-only		
+d)Secondary
+2. A ______ connects computers within a room, a floor, or a building
+a)MAN	
+b)LAN   	
+c)WAN	
+d) None of the above                                                                                                                                    
+3. _____________is a program that manages computers hardware		
+a)Kernel	
+b)Operating system	  
+c)Thread	
+d)Process
+4.________lies on top of  memory hierarchy.					
+a)Cache	
+b)Registers	
+c)Main memory	
+d)Auxiliary memory
+5. Which of the following Scheduling Algorithms in Non-Preemptive?	    
+a)FCFS	
+b)GUI	
+c)Round robin	
+d) Multilevel Queue Scheduling
+6. Which of the following is not a valid process state?			   
+a)New	
+b)Running		
+c)Waiting	
+d)Stand by
+7. ________ is a bar chart that illustrates a particular scheduling		   	
+a)pie chart	
+b)flow graph 	
+c)gantt chart		
+d)flow chart
+8. _____is user friendly interface.						     	
+a)FCFS	
+b)GUI	
+c)system call	
+d)kernel
+9. Each process is represented in the operating system by_______	     	
+a)process	 
+b)process state 	
+c)PCB	
+d)TCB  
+10. which of the following is not a type of system call			 
+a) Process control			
+b) File manipulation
+c) Resource allocation		
+d) Device manipulation

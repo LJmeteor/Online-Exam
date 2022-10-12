@@ -1,0 +1,50 @@
+1.What is the collection of the hyperlinked document on the internet known as?        
+a)HTML                                 
+b)Email
+     c)WWW                                
+d)Internet
+2. Identify the layer which provides service to the user.              
+    a)Session layer                     
+b)Application layer    
+  c)Presentation error            
+d)Physical layer
+3. What is a HUB?	 
+a)Software                           
+b)Computing device
+c)Network device                
+d)Calculating device	
+ 4. What does PoP stand for?                                                                                          
+a)Pre Office Protocol            
+b)Post Office Protocol
+c)Protocol of Post               
+d)None
+5.  Identify the protocol primarily used for browsing data.                                    
+a)FTP                                   
+b)TCP
+c)TFTP                                 
+d)HTTP
+6. What is the term used when the main server sends mail to another mail server?        
+a)FTP                                       
+b)SMTP
+c)TCP/IP                                   
+d)MIME  
+7.  Identify the device used to boost up a weak signal.                                                    
+a)Modem                             
+b)Repeater
+c)Switch                              
+d)Router
+8. Identify the incorrect network topology,                                                                  
+a)Bus                                    
+b)Star
+c)P2P                                    
+d)Ring  
+9. Identify the layer which determines the interface of the system with the user.      
+a)Network                               
+b)Datalink
+c)Presentation                          
+d)Application
+10. What does LAN stand for?                                                                 
+a)Local Array Network               
+b)Local Area Network
+c)Local Area Net                        
+d)None

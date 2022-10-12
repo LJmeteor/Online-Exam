@@ -1,0 +1,10 @@
+1.  Interface can have only _____________________ variables.  
+2. The implicit return type of a constructor is___________________
+3. The ------------------keyword used to declare interface   in java
+4. ______________ package have Scanner class.
+5. ---------------------   founder of java
+6. ______________________ is used for initializing class variables at instantiation  
+7. ------------------- Number of  primitive  data types available in java
+8. the size of int in java is  ---------------------
+9. In _____________________ two methods have same signature.
+10. The constant instance variable declared using ______________ keyword

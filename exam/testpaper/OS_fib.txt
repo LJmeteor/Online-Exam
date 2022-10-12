@@ -1,0 +1,10 @@
+11. __________is a program in execution.
+12. _________________ fetches the next instruction.
+13. _________ provides an interface to the services made available by an operating      system. 
+14. The  operating system is the interface between ________ and ___________.
+15. The core part of  OS is called___________.
+16. Time sharing is also called ___________operating system.
+17.  GUI  stands  for __________________________.
+18. _________ time is the sums of the periods spend waiting in ready queue.
+19. The process is in _________ state when it is being created.        	
+20. The procedure of starting a computer by loading the kernel known as________

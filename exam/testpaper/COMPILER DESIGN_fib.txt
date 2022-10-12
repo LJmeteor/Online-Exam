@@ -1,0 +1,10 @@
+11. Lexical analyzer is also known as -------------------.
+12. LALR stands for ------------------------
+ 13. Input buffering has two pointers are ----------------- & ------------------------
+14. The default value of k in LR(k) is ---------------------
+15. Compiler can check ------------------------ error.
+16. CLR parser stands for ----------------------------
+17. In LL(1) parser, ‘1’ indicates ----------------------
+ 18. The recognition of tokens for identifier is -------------------
+ 19. Recursive descent parser is ----------------------
+ 20. In finite automata of NFA stands for ------------------------------ 

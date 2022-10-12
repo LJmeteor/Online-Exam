@@ -1,0 +1,7 @@
+ID,Category,description,answer,A,B,C,D
+1,single,what is java,A,java,python,C++,google
+2,single,The number of tokens in the following code is ------ if (x>y)z=0;,A,10,9,8,7
+3,single,One of the purposes of using intermediate code in compilers is,B,make parsing & semantic analysis simpler,Improve error recovery & error reporting ,increase the chances of reusing the machine- independent code optimizer in other compilers.,improve the register allocation
+4,fib,In finite automata of NFA stands for ------------------------------ ,letter (letter\digit)*,,,,
+5,fib,Recursive descent parser is ----------------------,Topdown parser,,,,
+6,fib,The recognition of tokens for identifier is -------------------,Non-determinstic finite automata,,,,

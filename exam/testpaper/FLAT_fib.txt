@@ -1,0 +1,10 @@
+11)  Assume the R is a relation on a set A,aRb is partially ordered such that a and b are______
+12)  A regular language over an sum is one that cannot be obtained from the basic languages using the operation____________
+13)The minimum number of states required  to recognize an octal number is divisible by 3 are/is____________
+14)  If an infinite language is passed to machine M,the subsidiary  input is______ .
+15)  Automata tuples are ____________
+16) DFA stands for  __________ .
+17)  The logic of example is pumping lemma is good ___________
+18)  S?aB_________	
+19) The set of positive integers is _____________
+20)  The union of the sets {1, 2, 5} and {1, 2, 6} is the set _______________   

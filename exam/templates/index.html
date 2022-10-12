@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'plugins/bootstrap_3.3.0/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.1-min.js' %}"></script>
+    <link rel="icon" type="image/x-icon" href="css/img/cropped-MARK-GLOW-1-192x192.png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'plugins/bootstrap_3.3.0/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+       $(function(){
+            single_length=Number($("#MCQ").attr("name"))
+            //submit answers
+            $("#submit").click(function () {
+                var answerList=[];
+                if($(":checked").length<single_length){
+                    alert("Please answer all the MCQ ")
+                    return 
+                }
+                $(":checked").each(function(){
+                    answerList.push($(this).attr("value"));
+                })
+                // if there is a fill in the blank question that has not been answered, flag=true to stop uploading  answer.
+                flag=false   
+                $(".fibAnswer").each(function(){
+                    if($(this).val()==""){
+                        alert("Please answer all the fill in blank questions!")
+                        flag=true
+                        return 
+                    }
+                answerList.push($(this).val());
+                })
+                if(flag){
+                    return
+                }  
+                // alert(answerList) 
+                examName=$("#submit").attr("name")
+                var datas=JSON.stringify(answerList)
+                // post answerList
+                $.ajax({
+                type: "POST",
+                url: "/submitAnswers/", 
+                dataType:"json",   
+                data: {"answerList":datas,
+                    "examName" : examName
+                    },
+                success: function (result) {  
+                    alert("your grade is :"+result.grade)
+                },
+            });
+            });
+    
+            //pops up modal window for Exam Questions
+            $("#uploadExamQuestions").click(function () {
+                $("#importTestPaperModal").modal("show");
+            });
+
+            // upload testPaper to datbase
+            $("#importTestPaperBtn").click(function(){
+               const testName= $("#testPaper").val()
+               var suffix = testName.substr(testName.lastIndexOf(".") + 1).toLocaleLowerCase();
+			   if(suffix != "txt"){
+			   alert("the suffix of file should be .txt");
+			   return;
+			   }
+               var testFile = $("#testPaper").get(0).files[0];
+               var formData = new FormData();
+               var questionType= $("#options option:selected").val();
+               var subjectName=$("#submit").attr("name")
+			   formData.append("testFile", testFile);
+               formData.append("questionType",questionType)
+               formData.append("subjectName",subjectName)
+               $.ajax({
+                      url:"/uploadTestPaper/",
+                      data:formData,
+                      processData:false,
+                      contentType:false,
+                      type:'post',
+				      dataType:'json',
+                      success: function(data){
+                        if(data.code==1){
+                            alert("success !")
+                            location.reload(true);
+                        }else{
+                            alert('failed')
+                        }
+                      }
+               })
+            })
+            
+        
+            // pops up modal window for Exepcted Answer
+            $("#uploadAnswer").click(function(){
+                $("#importTestAnswerModal").modal("show");
+            })
+
+            // upload Expected Answer
+            $("#importTestAnswerbtn").click(function(){
+               alert("model open!")
+               const testAnswerFileName= $("#testAnswerFile").val()
+               var suffix = testAnswerFileName.substr(testAnswerFileName.lastIndexOf(".") + 1).toLocaleLowerCase();
+			   if(suffix != "txt"){
+			   alert("the suffix of file should be .txt");
+			   return;
+			   }
+               var testAnswerFile = $("#testAnswerFile").get(0).files[0];
+               var formData = new FormData();
+               var subjectName=$("#submit").attr("name")
+			   formData.append("testAnswerFile", testAnswerFile);
+               formData.append("subjectName",subjectName)
+               $.ajax({
+                      url:"/uploadTestAnswer/",
+                      data:formData,
+                      processData:false,
+                      contentType:false,
+                      type:'post',
+				      dataType:'json',
+                      success: function(data){
+                        if(data.code==1){
+                            alert("success !")
+                            location.reload(true);
+                        }else{
+                            alert('failed')
+                        }
+                      }
+               })
+            })
+        });
+
+    </script>
+    <title>Take The Exam</title>
+    <style>
+        #options{
+            position: relative;
+            top: -20px; 
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="nav-shadow">
+        <h1 class="logo">
+            <img src="JavaScript:;" alt={{examName}} width="100px">
+        </h1>
+        <ul> {% if isLogin  %}
+            <li><button id="uploadExamQuestions" type="button" class="btn btn-primary" style="display:block">Upload TestPaper</button></li>
+            <li><button id="uploadAnswer" type="button" class="btn btn-primary" style="display:block; margin-left: 1rem;">Upload Answer</button></li>
+            {% endif %}
+            <li><a href="/studentHub">Student Hub</a></li>
+            <li><a href="/test?examName={{examName}}">Student Grades</a></li>
+        </ul>
+    </nav>
+
+    <!-- modal window for upload test paper -->
+    <div class="modal fade" id="importTestPaperModal" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 85%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Import test paper</h4>
+                </div>
+                <div class="modal-body" style="height: 350px;">
+                    <div style="position: relative;top: 0px; left: 100px;">Exam Name:</div>
+                    <textarea name="En" id="En" cols="15" rows="1" style="position: relative;top: -24px; left: 200px; resize: none; overflow: auto;" readonly>{{examName}}</textarea>
+                    <div style="position: relative;top: 0px; left: 100px;">Question Type:</div>
+                    <select id="options">
+                        <option disabled selected value>&nbsp&nbsp&nbsp---------choose--------   </option>
+                        <option value="signle">Single choice question</option>
+                        <option value="multiple">Multiple choice questions</option>
+                        <option value="fib">Fill in blank</option>
+                      </select>
+                    <div style="position: relative;top: 100px; left: 100px;">
+                        Choose File <small style="color: gray;">[Only support.txt]</small>
+                    </div>
+                    <div style="position: relative;top: 125px; left: 100px;">
+                        <input type="file" id="testPaper">
+                        <br>
+                        <a href="{% static 'templateFile/template_single.txt' %}" download="activity-mode.xls" style="text-decoration:none;color: #2a6496" ><b>Download  template file</b></a>
+                    </div>
+                    <div style="position: relative; width: 400px; height: 320px; left: 55% ; top: -150px;" >
+                        <h3>Important note</h3>
+                        <ul>
+                            <li>This operation applies only to Txt files</li>
+                            <li>Each multiple choice question takes up 5 rows</li>
+                            <li>The first row is a description of the behavior problem, and the rest are ABCD</li>
+                            <li>Each choice must be like "a) the description of A"</li>
+                            <li>Each Fill in the blanks takes up one row</li>
+                            <li>By default, the character encoding is UTF-8 (unicode).</li>
+                            <li>Recommendation: you download the template file before importing the real data</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <button id="importTestPaperBtn" type="button" class="btn btn-primary">import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal windows for Expected Answer -->
+    <div class="modal fade" id="importTestAnswerModal" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 85%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Import Expected Answer</h4>
+                </div>
+                <div class="modal-body" style="height: 350px;">
+                        <div style="position: relative;top: 0px; left: 100px;">Exam Name:</div>
+                        <textarea name="En" id="En" cols="15" rows="1" style="position: relative;top: -24px; left: 200px; resize: none; overflow: auto;" readonly>{{examName}}</textarea>
+                        <div style="position: relative;top: 0px; left: 100px;">
+                            Choose File <small style="color: gray;">[Only support.txt]</small>
+                        </div>
+                        <div style="position: relative;top: 25px; left: 100px;">
+                            <input type="file" id="testAnswerFile">
+                            <br>
+                            <a href="{% static 'templateFile/template_answer.txt' %}" download="activity-mode.xls" style="text-decoration:none;color: #2a6496" ><b>Download  template file</b></a>
+                        </div>
+                        <div style="position: relative; width: 400px; height: 320px; left: 55% ; top: -150px;" >
+                        <h3>Important note</h3>
+                        <ul>
+                            <li>This operation applies only to Txt files</li>
+                            <li>Each answer takes up 1 rows</li>
+                            <li>Each answer must be like "1.answer "</li>
+                            <li>By default, the character encoding is UTF-8 (unicode).</li>
+                            <li>Recommendation: you download the template file before importing the real data</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <button id="importTestAnswerbtn" type="button" class="btn btn-primary">import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MCQ -->
+    <h2 class="questionType" id="MCQ" name= "{{ single |length }}"  style="position: relative; left: 0%; color: #337AB7; margin-top: 1rem; font-size: xx-large;">MCQ</h2>
+    <section id="question">
+        <div class="container">
+                   {% for key, value in single.items %}
+                   {% if key != "question6" %}
+                   <h2 id="question-1" class="q-title"></h2>
+                   <fieldset class ="mcq">
+                   <p id="1">{{value.description}}</p>
+
+                   {% for key1, value1 in value.choices.items %}
+                   <label><input type="radio" name={{key}} value={{key1}} >{{value1}}</label>
+                   <br>
+                   {% endfor %}
+
+                   {% if isLogin %}
+                   <span style="color: red; font-weight: bold;">Correct Answer: <span style="font-weight: 1500; font-size: larger;">{{value.answer}}</span></span>
+                   {%  endif %}
+
+                   </fieldset>
+                   <br><br><br>
+                   {% endif %}
+                   {% endfor %}
+        </div> 
+    </section>
+           
+
+    <!-- fill in blank -->
+    <h2 class="questionType" style="position: relative; left: 0%; color: #337AB7; font-size: xx-large;">Fill in blank</h2>
+    <section id="question">
+        <fieldset class ="fib">
+            {% for key, value in fibList.items %}
+             {% if key != "question6" %}
+            <div class="container">
+                <h2 id="question-2" class="q-title"></h2>
+                <p>{{value.description}}</p>
+                <!-- <textarea name="" id="" cols="30" rows="2"></textarea> -->
+                <input class="fibAnswer" type="text">
+                {% if isLogin %}
+                <span style="color: red; font-weight: bold;">Correct Answer: <span style="font-weight: 1500; font-size: larger;">{{value.answer}}</span></span>
+                {%  endif %}
+            </div>
+            <br>
+            {%  endif %}
+            {% endfor %}
+        </fieldset> 
+    </section>
+    <div class="submit">
+        {% if  isLogin  %}
+        <input class="submit-b" type="submit" id="submit" style="display:none" name={{examName}}>
+        {% else  %}
+        <input class="submit-b" type="submit" id="submit" style="display:block; position: relative; left: 50%; " name={{examName}}>
+        {% endif %}
+    </div>
+</body>
+</html>
